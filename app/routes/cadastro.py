@@ -1,18 +1,18 @@
 from fastapi import APIRouter, Request, HTTPException, status, Path, Depends
 from fastapi.templating import Jinja2Templates
-from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
 from ..database import get_db, engine
 from ..models import Fan, FanCadastro, Base
 
 router = APIRouter()
-Base.metadata.create_all(bind=engine)
 templates = Jinja2Templates(directory="templates")
 
-# @router.get("/cadastro")
-# def tela_cadastro(request: Request):
-#     return templates.TemplateResponse("cadastro.html", {"request": request})
+# Rota para exibir a tela de cadastro
+@router.get("/cadastro")
+def tela_cadastro(request: Request):
+    return templates.TemplateResponse("cadastro.html", {"request": request})
 
+# Rota responsável por cadastrar um novo fã no sistema
 @router.post("/cadastro")
 def cadastro_fan(fan: FanCadastro, db: Session = Depends(get_db)):
     try:
