@@ -28,10 +28,10 @@ def cadastro_fan(fan: FanCadastro, db: Session = Depends(get_db)):
         db.add(db_fan)
         db.commit()
         db.refresh(db_fan)
-        return {"id": db_fan.id, "mensagem": "Cadastro realizado com sucesso!"}
+        return RedirectResponse(f"/upload.html?fan_id={db_fan.id}", status_code=303)
     except Exception as e:
         db.rollback()
         raise HTTPException(
             status_code = status.HTTP_500_INTERNAL_SERVER_ERROR,
-            details = f"Errp ap cadastrar: {str(e)}"
+            details = f"Erro ao cadastrar: {str(e)}"
         )
