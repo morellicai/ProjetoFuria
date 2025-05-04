@@ -8,6 +8,14 @@ import io
 import os
 import streamlit as st
 
+# Configuração da página
+st.set_page_config(
+    page_title="Dashboard Furia",
+    page_icon="🎮",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
 # Configuração da API
 backend_option = st.sidebar.selectbox(
     "Ambiente:",
@@ -17,13 +25,6 @@ backend_option = st.sidebar.selectbox(
 BACKEND_URL = "https://projetofuria.onrender.com" if backend_option == "Produção" else "http://localhost:8000"
 response = requests.get(f"{BACKEND_URL}/predict", params={"x": 1})
 
-# Configuração da página
-st.set_page_config(
-    page_title="Dashboard Furia",
-    page_icon="🎮",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
 
 # Funções para consumir a API
 def get_fans(interesse=None, evento=None, compra=None, engajamento=None, page=1, page_size=100, nome=None):
