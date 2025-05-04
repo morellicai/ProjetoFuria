@@ -22,9 +22,7 @@ backend_option = st.sidebar.selectbox(
     ("Local", "Produção")
 )
 
-BACKEND_URL = "https://projetofuria.onrender.com" if backend_option == "Produção" else "http://localhost:8000"
-response = requests.get(f"{BACKEND_URL}/predict", params={"x": 1})
-
+API_URL = "https://projetofuria.onrender.com" if backend_option == "Produção" else "http://localhost:8000"
 
 # Funções para consumir a API
 def get_fans(interesse=None, evento=None, compra=None, engajamento=None, page=1, page_size=100, nome=None):
