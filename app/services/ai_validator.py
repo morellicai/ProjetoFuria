@@ -11,6 +11,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 import logging
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service
 
 # Configurar logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -28,6 +30,7 @@ except:
         logger.error(f"Erro ao carregar modelos spaCy: {str(e)}")
         raise
 
+
 # Configuração do Selenium
 def criar_driver():
     options = Options()
@@ -39,7 +42,8 @@ def criar_driver():
     options.add_argument('--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36')
 
     try:
-        driver = webdriver.Chrome(options=options)
+        service = Service(ChromeDriverManager().install())
+        driver = webdriver.Chrome(service=service,options=options)
         return driver
     except Exception as e:
         logger.error(f"Erro ao criar driver Selenium: {str(e)}")
