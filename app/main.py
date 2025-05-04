@@ -22,6 +22,7 @@ app.middleware("http")(
 # Incluir routers
 app.include_router(cadastro.router)
 app.include_router(upload.router)
+app.include_router(redes.router)
 
 if __name__ == "__main__":
     import uvicorn

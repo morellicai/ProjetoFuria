@@ -14,8 +14,30 @@ class FanCadastro(BaseModel):
     compras: List[str] = Field(default_factory=list, example=["Camiseta FURIA"])
 
 class FanRedes(BaseModel):
-    redes_sociais: List[str] = Field(default_factory=list, example=["https://twitter.com/joaosilva"])
-    perfis_esports: List[str] = Field(default_factory=list, example=["https://hltv.org/user/joaosilva"])
+    redes_sociais: List[str] = Field(
+        default_factory=list,
+        example=["https://twitter.com/joaosilva"]
+    )
+    perfis_esports: List[str] = Field(
+        default_factory=list,
+        example=["https://hltv.org/user/joaosilva"]
+    )
+
+class RedesSociaisInput(BaseModel):
+    instagram: Optional[str] = Field(None, example="https://instagram.com/seuperfil", description="Perfil do Instagram")
+    twitter: Optional[str] = Field(None, example="https://twitter.com/seuperfil", description="Perfil do Twitter")
+    steam: Optional[str] = Field(None, example="https://steamcommunity.com/id/seuperfil", description="Perfil da Steam")
+    gamersclub: Optional[str] = Field(None, example="https://gamersclub.com.br/player/seuperfil", description="Perfil da Gamers Club")
+
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "instagram": "https://instagram.com/seuperfil",
+                "twitter": "https://twitter.com/seuperfil",
+                "steam": "https://steamcommunity.com/id/seuperfil",
+                "gamersclub": "https://gamersclub.com.br/player/seuperfil"
+            }
+        }
 
 class FanDocumento(BaseModel):
     documento_nome: str = Field(..., example="rg_joao.jpg")
