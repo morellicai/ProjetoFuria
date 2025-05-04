@@ -1,7 +1,3 @@
-Com certeza! Vou reescrever o README do [ProjetoFuria](https://github.com/morellicai/ProjetoFuria) para deixá-lo mais profissional, organizado e atrativo, seguindo padrões de projetos open source de maior porte. Vou incluir seções como visão geral, arquitetura, instruções detalhadas, exemplos de uso, tecnologias, contribuição e licença, além de destacar as funcionalidades.
-
----
-
 # ProjetoFuria
 
 **ProjetoFuria** é uma solução completa para cadastro, validação e análise de fãs, com foco em experiências para comunidades de e-sports. O sistema permite coletar dados pessoais, interesses, atividades, eventos, compras, além de validar documentos e perfis de redes sociais usando inteligência artificial. O projeto é dividido em backend (API FastAPI) e frontend (Streamlit), proporcionando uma experiência moderna e interativa.
