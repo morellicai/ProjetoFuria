@@ -133,7 +133,7 @@ if 'last_fan_id' not in st.session_state:
 
 # Página principal - Dashboard
 if menu == "Dashboard":
-    st.title("Dashboard de Fãs - FURIA Esports")
+    st.title("Dashboard de Fãs - FURIA eSports")
 
     # Obter estatísticas
     stats = get_stats()
