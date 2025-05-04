@@ -5,9 +5,17 @@ import plotly.express as px
 import plotly.graph_objects as go
 from PIL import Image
 import io
+import os
+import streamlit as st
 
 # Configuração da API
-API_URL = "http://localhost:8000"  # Ajuste conforme necessário
+backend_option = st.sidebar.selectbox(
+    "Ambiente:",
+    ("Local", "Produção")
+)
+
+BACKEND_URL = "https://projetofuria.onrender.com" if backend_option == "Produção" else "http://localhost:8000"
+response = requests.get(f"{BACKEND_URL}/predict", params={"x": 1})
 
 # Configuração da página
 st.set_page_config(
