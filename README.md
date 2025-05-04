@@ -1,39 +1,28 @@
-# Projeto Furia - Sistema de Gerenciamento de Fãs
-
-Este projeto oferece um sistema completo para gerenciamento de fãs da equipe de e-sports FURIA, permitindo cadastro de fãs, validação de documentos, gerenciamento de redes sociais e análise de engajamento.
-
-## Sumário
-
-- [Projeto Furia - Sistema de Gerenciamento de Fãs](#projeto-furia---sistema-de-gerenciamento-de-fãs)
-  - [Sumário](#sumário)
-  - [Visão Geral](#visão-geral)
-  - [Estrutura do Projeto](#estrutura-do-projeto)
-- [Funcionalidades](#funcionalidades)
-- [Instalação e Configuração](#instalação-e-configuração)
-- [Executando o Projeto](#executando-o-projeto)
-  - [Backend (FastAPI)](#backend-fastapi)
-  - [FrontEnd (Streamlit)](#frontend-streamlit)
-- [Tecnologias Utilizadas](#tecnologias-utilizadas)
+Com certeza! Vou reescrever o README do [ProjetoFuria](https://github.com/morellicai/ProjetoFuria) para deixá-lo mais profissional, organizado e atrativo, seguindo padrões de projetos open source de maior porte. Vou incluir seções como visão geral, arquitetura, instruções detalhadas, exemplos de uso, tecnologias, contribuição e licença, além de destacar as funcionalidades.
 
 ---
 
-## Visão Geral
+# ProjetoFuria
 
-O Projeto Furia é um sistema que possibilita:
-
-1. Cadastro de fãs, com informações pessoais, interesses e atividades.
-2. Upload e validação de documentos.
-3. Vinculação e validação de perfis de redes sociais (Instagram, Twitter, Steam, GamersClub).
-4. Visualização e análise de engajamento dos fãs em um painel administrativo.
-
-Esta aplicação foi desenvolvida utilizando Python, FastAPI (para o backend) e Streamlit (para o frontend).
+**ProjetoFuria** é uma solução completa para cadastro, validação e análise de fãs, com foco em experiências para comunidades de e-sports. O sistema permite coletar dados pessoais, interesses, atividades, eventos, compras, além de validar documentos e perfis de redes sociais usando inteligência artificial. O projeto é dividido em backend (API FastAPI) e frontend (Streamlit), proporcionando uma experiência moderna e interativa.
 
 ---
 
-## Estrutura do Projeto
+## 🚀 Visão Geral
 
-```bash
-ProjetoFuria/
+O objetivo do ProjetoFuria é criar uma plataforma robusta para:
+
+- Coletar dados detalhados de fãs (nome, endereço, CPF, interesses, atividades, eventos, compras do último ano)
+- Permitir upload e validação de documentos (ex: RG) usando OCR
+- Vincular e validar perfis de redes sociais e e-sports
+- Exibir um dashboard com resumo dos dados coletados
+- Facilitar a integração entre frontend e backend de forma simples e escalável
+
+---
+
+## 🏗️ Arquitetura
+
+```
 ├── app/
 │   ├── database.py          # Configuração da conexão com o banco de dados
 │   ├── main.py              # Ponto de entrada da API FastAPI
@@ -52,69 +41,117 @@ ProjetoFuria/
 └── README.md                # Documentação do projeto (este arquivo)
 ```
 
-# Funcionalidades
+- **Backend:** API RESTful construída com FastAPI, responsável por processar dados, validar documentos e gerenciar integrações.
+- **Frontend:** Interface web interativa desenvolvida em Streamlit, facilitando o cadastro e visualização dos dados.
 
-1. **Cadastro de Fãs**
-    - Registro de dados pessoais (nome, CPF, endereço, etc.).
-    - Definição de interesses, eventos e histórico de compras.
-2. **Validação de Documentos**
-    - Upload de documentos (imagens ou PDFs).
-    - Validação (manual ou automática) do conteúdo dos documentos.
-3. **Gerenciamento de Redes Sociais**
-    - Inclusão de perfis (Instagram, Twitter, Steam, GamersClub).
-    - Validação com IA para verificar relevância ao perfil de e-sports.
-4. **Dashboard de Gerenciamento**
-    - Visualização e filtro de todos os fãs cadastrados.
-    - Estatísticas de engajamento, top interesses, eventos e compras populares.
-    - Interface intuitiva em Streamlit com botões e barra de pesquisa.
+---
 
-# Instalação e Configuração
-1. **Clonar o repositório (ou baixar o código-fonte)**
-   ```bash
-   git clone https://github.com/SeuUsuario/ProjetoFuria.git
-   cd ProjetoFuria
-   ```
-2. **Criar e ativar um ambiente virtual
-    ```bash
-    python -m venv env
-    source env/bin/activate
-    # No Windows:
-    # .\env\Scripts\activate
-   ```
-3. **Instalar dependências**
-   ```bash
-   pip install -r requirements.txt
-   ```
-> Certifique-se de que todas as dependências sejam instaladas com sucesso!
+## ✨ Funcionalidades
 
-# Executando o Projeto
-## Backend (FastAPI)
-Na raiz do projeto, execute:
+- **Cadastro completo de fãs:** nome, endereço, CPF, interesses, atividades, eventos e compras.
+- **Upload de documentos:** envio de imagem do RG ou similar.
+- **Validação de identidade via IA:** OCR para extrair e comparar nome do documento com o informado.
+- **Vinculação de redes sociais:** campos para links de perfis e páginas, incluindo e-sports.
+- **Validação de links:** simulação de checagem de relevância dos perfis informados.
+- **Dashboard interativo:** resumo visual dos dados coletados e validados.
+- **Documentação clara e exemplos de uso.**
+
+---
+
+## ⚙️ Instalação
+
+### 1. Clone o repositório
+
+```bash
+git clone https://github.com/morellicai/ProjetoFuria.git
+cd ProjetoFuria
+```
+
+### 2. Instale as dependências
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## 🖥️ Como rodar localmente
+
+### Backend (FastAPI)
+
+No diretório raiz, execute:
+
 ```bash
 uvicorn app.main:app --reload
 ```
-isso iniciará o backend na porta padrão (8000). A documentação interativa do FastAPI estrá disponivel em:
-```plaintext
-http://localhost:8000/docs
-```
-- Ou se preferir:
-```plaintext
-http://localhost:8000/redoc
-```
-## FrontEnd (Streamlit)
-Você pode rodar o dashboard localmente executando:
+
+- Acesse a API em: [http://127.0.0.1:8000](http://127.0.0.1:8000)
+- Documentação automática: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
+
+### Frontend (Streamlit)
+
+Em outro terminal, execute:
+
 ```bash
 streamlit run frontend.py
 ```
-Por padrão, o Streamlit estará disponível em `http://localhost:8501`.
 
-# Tecnologias Utilizadas
-- **Python 3.9+**
-- **FastAPI**
-- **SQLAlchemy**
-- **Pydantic**
-- **Uvicorn**
-- **Streamlit**
-- **Requests**
-- **BeautifulSoup4** (para extração de conteúdo)
-- **spaCy** (para validação avançada de conteúdo com IA)
+- Acesse a interface web em: [http://localhost:8501](http://localhost:8501)
+
+---
+
+## 📝 Exemplo de Uso
+
+1. Abra o frontend no navegador.
+2. Preencha os campos de cadastro com seus dados.
+3. Faça upload de uma imagem do seu RG.
+4. Informe os links de suas redes sociais e perfis de e-sports.
+5. Visualize o dashboard com o resumo dos dados e status das validações.
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+- **Backend:** FastAPI, Uvicorn, Pydantic, pytesseract (OCR)
+- **Frontend:** Streamlit
+- **Outros:** Pandas, Pillow, requests
+
+---
+
+## 📦 Roadmap
+
+- [x] Cadastro de dados pessoais
+- [x] Upload e validação de documentos
+- [x] Integração com redes sociais
+- [x] Dashboard de visualização
+- [ ] Integração real com APIs de redes sociais
+- [ ] Validação avançada de perfis de e-sports
+- [ ] Exportação de relatórios
+
+---
+
+## 🤝 Contribuindo
+
+Contribuições são bem-vindas! Siga os passos abaixo:
+
+1. Fork este repositório
+2. Crie uma branch (`git checkout -b feature/sua-feature`)
+3. Commit suas alterações (`git commit -m 'feat: minha nova feature'`)
+4. Push para a branch (`git push origin feature/sua-feature`)
+5. Abra um Pull Request
+
+---
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+---
+
+## 📫 Contato
+
+Dúvidas, sugestões ou feedback? Abra uma issue ou entre em contato pelo [GitHub Issues](https://github.com/morellicai/ProjetoFuria/issues).
+
+---
+
+Sinta-se à vontade para adaptar ou expandir conforme o projeto evoluir! Se quiser, posso gerar badges, exemplos de requests para a API, ou um GIF mostrando o uso do frontend.
