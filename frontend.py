@@ -136,7 +136,7 @@ menu = st.sidebar.radio(
 
 # Inicializar variáveis de sessão se não existirem
 if 'last_fan_id' not in st.session_state:
-    st.session_state.last_fan_id = 1
+    st.session_state['last_fan_id'] = None
 
 # Página principal - Dashboard
 if menu == "Dashboard":
@@ -398,8 +398,11 @@ elif menu == "Cadastro de Fãs":
 elif menu == "Gerenciar Redes Sociais":
     st.title("Gerenciar Redes Sociais")
 
-    # Selecionar fã
-    fan_id = st.number_input("ID do Fã", min_value=1, step=1, value=st.session_state.get('last_fan_id', 1))
+    fan_id = st.session_state.get('last_fan_id')
+    if not fan_id:
+        st.warning("Nenhum fã foi selecionado ou cadastrado. \
+                   Vá para a página de Cadastro de Fãs primeiro.")
+        st.stop()
 
     # Obter redes atuais
     redes_atuais = get_fan_redes(fan_id)
@@ -425,6 +428,22 @@ elif menu == "Gerenciar Redes Sociais":
                 if result:
                     st.success("Redes sociais validadas com sucesso!")
                     st.json(result)
+
+                    redes_atuais = get_fan_redes(fan_id)
+
+                    # Atualizar o DataFrame
+                    redes_df = pd.DataFrame([
+                        {
+                            "ID": rede.get("id"),
+                            "Tipo": rede.get("tipo", "").capitalize(),
+                            "Link": rede.get("link"),
+                            "Validado": "✅" if rede.get("validado") else "❌"
+                        }
+                        for rede in redes_atuais
+                    ])
+
+                    # Reexibir o DataFrame atualizado
+                    st.dataframe(redes_df)
 
     st.subheader("Adicionar/Atualizar Redes Sociais")
 
@@ -453,14 +472,25 @@ elif menu == "Gerenciar Redes Sociais":
                 result = adicionar_redes(fan_id, redes_data)
                 if result:
                     st.success("Redes sociais atualizadas com sucesso!")
-                    st.experimental_rerun()
+
+                    # Chamar validação
+                    with st.spinner("Validando redes sociais..."):
+                        validation_result = validar_redes(fan_id)
+                        if validation_result:
+                            st.success("Redes sociais validadas com sucesso!")
+                            st.json(validation_result, expanded=True)
+                    st.rerun()
+
 
 # Página de Upload de Documentos
 elif menu == "Upload de Documentos":
     st.title("Upload de Documentos")
 
-    # Selecionar fã
-    fan_id = st.number_input("ID do Fã", min_value=1, step=1, value=st.session_state.get('last_fan_id', 1))
+    fan_id = st.session_state.get('last_fan_id')
+    if not fan_id:
+        st.warning("Nenhum fã foi selecionado ou cadastrado. \
+                   Vá para a página de Cadastro de Fãs primeiro.")
+        st.stop()
 
     uploaded_file = st.file_uploader("Escolha um documento", type=["jpg", "jpeg", "png", "pdf"])
 

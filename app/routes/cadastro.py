@@ -31,14 +31,10 @@ def cadastro_fan(fan: FanCadastro, request: Request, db: Session = Depends(get_d
         db.refresh(db_fan)
 
         accept = request.headers.get("accept", "")
-        if "application/json" in accept:
-            return {
-                "id": db_fan.id,
-                "mensagem": "Cadastro realizado com sucesso!",
-                "proxima_etapa": f"/upload/{db_fan.id}"
-            }
-        else:
-            return RedirectResponse(f"/upload/{db_fan.id}", status_code=303)
+        return {
+            "id": db_fan.id,
+            "mensagem": "Cadastro realizado com sucesso!"
+        }
     except Exception as e:
         db.rollback()
         raise HTTPException(
