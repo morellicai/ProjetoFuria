@@ -99,18 +99,18 @@ async def estatisticas_dashboard(db: Session = Depends(get_db)):
     ).outerjoin(RedeSocial).group_by(Fan.id).subquery()
 
     interesses_query = db.query(Fan.interesses).all()
-todos_interesses = []
-for interesses_str in interesses_query:
-    if interesses_str[0]:
-        todos_interesses.extend(interesses_str[0].split(','))
+    todos_interesses = []
+    for interesses_str in interesses_query:
+        if interesses_str[0]:
+            todos_interesses.extend(interesses_str[0].split(','))
 
-interesses_contagem = {}
-for interesse in todos_interesses:
-    interesse = interesse.strip()
-    if interesse:
-        interesses_contagem[interesse] = interesses_contagem.get(interesse, 0) + 1
+    interesses_contagem = {}
+    for interesse in todos_interesses:
+        interesse = interesse.strip()
+        if interesse:
+            interesses_contagem[interesse] = interesses_contagem.get(interesse, 0) + 1
 
-top_interesses = sorted(interesses_contagem.items(), key=lambda x: x[1], reverse=True)[:5]
+    top_interesses = sorted(interesses_contagem.items(), key=lambda x: x[1], reverse=True)[:5]
 
     eventos_query = db.query(Fan.eventos).all()
     todos_eventos = []
