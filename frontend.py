@@ -131,7 +131,12 @@ st.sidebar.image("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/FURI
 
 menu = st.sidebar.radio(
     "Menu",
-    ["Dashboard", "Cadastro de Fãs", "Gerenciar Redes Sociais", "Upload de Documentos"]
+    [
+        "Dashboard",
+        "Cadastro de Fãs",
+        "Upload de Documentos",
+        "Gerenciar Redes Sociais"
+    ]
 )
 
 # Inicializar variáveis de sessão se não existirem
